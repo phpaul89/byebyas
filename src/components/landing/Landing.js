@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import LandingNewsByWing from "./LandingNewsByWing";
 import SearchBar from "../SearchBar";
 import data from "../../data.json";
+import ContainerByWing from "./ContainerByWing";
 //import axios from "axios";
 
 export default class Landing extends Component {
   state = {
     articles: [],
     query: "",
+    wings: ["CNN", "NBC News", "Engadget", "BBC News", "Fox News"],
   };
   componentDidMount = () => {
     this.getData();
@@ -26,15 +27,14 @@ export default class Landing extends Component {
       <div>
         <SearchBar setQuery={this.setQuery} query={this.state.query} />
         <div className="article-container">
-          {this.state.articles
-            .filter((article) => {
-              return article.title
-                .toLowerCase()
-                .includes(this.state.query.toLowerCase());
-            })
-            .map((article, i) => {
-              return <LandingNewsByWing key={i} data={article} />;
-            })}
+          {this.state.articles.length &&
+            this.state.wings.map((wing, i) => (
+              <ContainerByWing
+                wing={wing}
+                articles={this.state.articles}
+                key={i}
+              />
+            ))}
         </div>
       </div>
     );
