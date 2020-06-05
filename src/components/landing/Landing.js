@@ -20,6 +20,7 @@ export default class Landing extends Component {
   };
 
   getData = () => {
+    console.log("getting data");
     const dataFromApi = axios.get(apiUrl);
     const dataFromApi2 = axios.get(apiUrl2);
 
@@ -39,6 +40,9 @@ export default class Landing extends Component {
     return (
       <div>
         <SearchBar setQuery={this.setQuery} query={this.state.query} />
+        <button type="button" onClick={this.getData}>
+          Refresh News!
+        </button>
         <div className="article-container">
           {this.state.articles.length &&
             this.state.wings.map((wing, i) => (
