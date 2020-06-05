@@ -10,7 +10,10 @@ export default class ContainerByWing extends Component {
     return (
       <div className="container-by-wing">
         <TopNewsByWing article={filterArticles.shift()} />
-        <SuggestedNewsByWing articles={filterArticles} />
+        <SuggestedNewsByWing
+          articles={filterArticles}
+          wing={filterArticles[0].source.name}
+        />
       </div>
     );
   }

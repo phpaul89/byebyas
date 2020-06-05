@@ -4,10 +4,11 @@ export default class SuggestedNewsByWing extends Component {
   render() {
     return (
       <div>
+        <h4>More news by {this.props.wing}</h4>
         {this.props.articles.map((article, i) => {
           return (
             <div key={i}>
-              Logo <a href={article.url}>{article.title}</a>{" "}
+              <a href={article.url}>{article.title}</a> <hr />
             </div>
           );
         })}

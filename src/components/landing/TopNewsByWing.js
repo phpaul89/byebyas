@@ -20,6 +20,7 @@ export default class LandingNewsByWing extends Component {
         )}
         <img src={this.props.article.urlToImage} alt="article-img" />
         <p>{this.props.article.description}</p>
+        <hr />
       </div>
     );
   }

@@ -53,3 +53,8 @@ img {
 .container-by-wing {
   width: 18%;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
