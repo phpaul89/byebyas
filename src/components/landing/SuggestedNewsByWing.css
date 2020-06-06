@@ -1,0 +1,13 @@
+.top-news-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.top-news-list a {
+  text-decoration: none;
+  color: black;
+  padding: 4px;
+  font-size: 0.8em;
+}

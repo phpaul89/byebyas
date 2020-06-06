@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./SuggestedNewsByWing.css";
 
 export default class SuggestedNewsByWing extends Component {
   render() {
@@ -6,8 +7,9 @@ export default class SuggestedNewsByWing extends Component {
       <div>
         {this.props.articles.map((article, i) => {
           return (
-            <div key={i}>
-              Logo <a href={article.url}>{article.title}</a>{" "}
+            <div className="top-news-list" key={i}>
+              <div className="top-news-list-logo">Logo</div>
+              <a href={article.url}>{article.title}</a>{" "}
             </div>
           );
         })}

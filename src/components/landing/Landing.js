@@ -3,6 +3,7 @@ import SearchBar from "../SearchBar";
 //import data from "../../data.json";
 import ContainerByWing from "./ContainerByWing";
 import axios from "axios";
+import "./Landing.css";
 
 const apiUrl =
   "https://newsapi.org/v2/top-headlines?sources=cnn,reuters,fox-news&apiKey=4af6fe3c8cca4f4e8c5f778abe7f85b1";
@@ -38,7 +39,9 @@ export default class Landing extends Component {
   render() {
     return (
       <div>
-        <SearchBar setQuery={this.setQuery} query={this.state.query} />
+        <div className="searchbar">
+          <SearchBar setQuery={this.setQuery} query={this.state.query} />
+        </div>
         <div className="article-container">
           {this.state.articles.length &&
             this.state.wings.map((wing, i) => (

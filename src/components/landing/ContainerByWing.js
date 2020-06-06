@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TopNewsByWing from "./TopNewsByWing";
 import SuggestedNewsByWing from "./SuggestedNewsByWing";
+import "./ContainerByWing.css";
 
 export default class ContainerByWing extends Component {
   render() {

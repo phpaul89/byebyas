@@ -36,20 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-img {
-  width: 20vh;
-  height: 20vh;
-}
-
-.article-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.container-by-wing {
-  width: 18%;
-}
