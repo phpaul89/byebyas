@@ -21,6 +21,7 @@ export default class Landing extends Component {
   };
 
   getData = () => {
+    console.log("getting data");
     const dataFromApi = axios.get(apiUrl);
     const dataFromApi2 = axios.get(apiUrl2);
 
