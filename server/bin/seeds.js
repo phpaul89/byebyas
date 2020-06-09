@@ -690,12 +690,12 @@ const insertArticles = Article.insertMany(articleSeeds);
 const insertNewspapers = Newspaper.insertMany(newspaperSeeds);
 
 Promise.all([insertArticles, insertNewspapers]).then((responses) => {
-  const newspaperData = responses[1];
   const articleData = responses[0];
+  const newspaperData = responses[1];
   newspaperData.forEach((newspaper) => {
     const filteredData = articleData
       .filter((article) => article.source.id === newspaper.source_name)
       .map((article) => article._id);
-    newspaper.articles.push(filteredData);
+    newspaper.articles.push(...filteredData);
   });
 });
