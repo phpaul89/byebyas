@@ -3,9 +3,9 @@ require("dotenv").config();
 // server/app.js
 const express = require("express");
 const mongoose = require("mongoose");
-// const bodyParser = require("body-parser");
-// const cookieParser = require("cookie-parser");
-// const logger = require("morgan");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 const path = require("path");
 
 mongoose
@@ -40,11 +40,29 @@ app.use(
   })
 );
 
+// Middleware Setup
+app.use(logger("dev"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+// Express View engine setup
+
+app.use(
+  require("node-sass-middleware")({
+    src: path.join(__dirname, "public"),
+    dest: path.join(__dirname, "public"),
+    sourceMap: true,
+  })
+);
+
+app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "/client/build")));
 
-app.get("/api", (req, res) => {
-  console.log("hello");
-});
+// default value for title local
+app.locals.title = "Express - Generated with IronGenerator";
+
+app.use("/api/landing", require("./routes/landing"));
 
 app.listen(5555, () => {
   console.log("Server listening on Port 5555");
