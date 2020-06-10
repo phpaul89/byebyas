@@ -686,6 +686,21 @@ mongoose
     console.error("Error connecting to mongo", err);
   });
 
+// const insertArticles = Article.insertMany(articleSeeds);
+// const insertNewspapers = Newspaper.insertMany(newspaperSeeds);
+
+// Promise.all([insertArticles, insertNewspapers]).then((responses) => {
+//   const articleData = responses[0];
+//   const newspaperData = responses[1];
+//   newspaperData.forEach((newspaper) => {
+//     const filteredData = articleData
+//       .filter((article) => article.source.id === newspaper.source_name)
+//       .map((article) => article._id);
+//     newspaper.articles.push(...filteredData);
+//     console.log(newspaper);
+//   });
+// });
+
 const insertArticles = Article.insertMany(articleSeeds);
 const insertNewspapers = Newspaper.insertMany(newspaperSeeds);
 
@@ -696,6 +711,16 @@ Promise.all([insertArticles, insertNewspapers]).then((responses) => {
     const filteredData = articleData
       .filter((article) => article.source.id === newspaper.source_name)
       .map((article) => article._id);
-    newspaper.articles.push(...filteredData);
+
+    Promise.all(filteredData).then((response) => {
+      Newspaper.findOneAndUpdate(
+        { _id: newspaper._id },
+        { articles: response },
+        { new: true }
+      ).then((res) => {
+        console.log(res);
+        mongoose.disconnect;
+      });
+    });
   });
 });
